@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>myLibrary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+    <!-- <div class="container-fluid border border-danger" id="myBody"> -->
+        <!-- nav starts here -->
+        <header class="container-fluid fixed-top" id="myNav">
+            <nav class="navbar navbar-dark navbar-expand-lg container" id="myNavList">
+                <a class="navbar-brand" href="/">HOME</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <%for(i=0;i<nav.length;i++) {%>
+                        <%if(i===4) {break;}%>
+                        <a class="nav-item nav-link" href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                    <%}%>
+                </div>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ">
+                        <%for(i=0;i<nav.length;i++) {%>
+                            <%if(i<4) {continue;}%>
+                            <a class="nav-item nav-link" href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                        <%}%>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- jumbotron starts here -->
+        <div class="jumbotron jumbotron-fluid" id="myJumbo">
+            <div class="container" id="myJumboContainer">
+                <h1 class="display-2 text-white">Library</h1>
+                <!-- <div class="container rounded" id="emptyBox"></div> -->
+            </div>
+        </div>
+
+        <!-- main content starts here -->
+        <div class="container" id="contentBody">
+            <div class="container card" id="myCard">
+                <form method="POST" action="/login/user" class="needs-validation" novalidate>
+                    <div class="row justify-content-center">
+                        <fieldset class="col-sm-6 border border-success rounded" style="width: fit-content;">
+                            <legend class="text-center">LOGIN:</legend>
+                            <div class="form-group row">
+                                <label for="loginEmail" class="col-sm-4 col-form-label">Email</label>
+                                <div class="col-sm-8">
+                                    <input name="email" type="email" class="form-control <%=valid%>" id="loginEmail" autocomplete="email" pattern="([\w\.\-]+)@([\w\-]+)\.([a-z]{2,})(\.[a-z]{2,3})?" required>
+                                    <div class="invalid-tooltip">Invalid Email</div>
+                                    <div class="valid-tooltip">Looks Good!</div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label for="loginPw" class="col-sm-4 col-form-label">Password</label>
+                                <div class="col-sm-8">
+                                    <input name="password" type="password" class="form-control <%=valid%>" id="loginPw" pattern="[\w\d\S]{8,}" required>
+                                    <div class="invalid-tooltip">Invalid Password</div>
+                                    <div class="valid-tooltip">OK!</div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <small>Don't have an account? </small><a href="signup"> Signup</a>
+                                    <button class="btn-sm btn-info float-right" type="submit">LOGIN</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <!-- social -->
+        <div class="container mb-3" id="social">
+            <h3 class="text-muted" style="font-family: 'Oswald', sans-serif;font-weight: 400;">Follow Us</h3>
+            <div class="row px-3">
+                <a class="btn text-white" href="https://www.twitter.com" style="background-color: #00acee;">Twitter</a>
+                <a class="btn text-white" href="https://www.facebook.com" style="background-color: #3b5998;">Facebook</a>
+                <a class="btn text-white" href="https://www.google.com" style="background-color: #db4a39;">Google+</a>
+            </div>
+        </div>
+    <!-- </div> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "mylibraryapp",
+  "version": "1.0.0",
+  "description": "FSD-2020 - Case Study-2 - MongoDb Integration to Library App",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sarath C - FSD-2020 - Koratty Batch",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "4.1.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.20",
+    "mongoose-autopopulate": "^0.12.2",
+    "multer": "^1.4.2"
+  }
+}
