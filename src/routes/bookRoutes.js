@@ -46,6 +46,8 @@ let router = (nav) => {
                     title: 'Library',
                     newbooks
                 });
+            }).catch((e) => {
+                res.send(e);
         });
     });
 

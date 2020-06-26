@@ -39,14 +39,16 @@ let router = (nav) => {
     authorsRouter.get('/', (req, res) => {
         Authordata.find()
             .then((newauthors) => {
-            res.render('authors',
-        {
-            nav,
-            token: "",
-            title:'Library',
-            newauthors
-        });
-        })
+                res.render('authors',
+                    {
+                        nav,
+                        token: "",
+                        title: 'Library',
+                        newauthors
+                    });
+            }).catch((e) => {
+                res.send(e);
+            });
 
     });
 

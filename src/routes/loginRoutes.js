@@ -19,7 +19,6 @@ let router = (nav) => {
     ]
 
     loginRouter.get('/', (req, res) => {
-        userdata.find().then((users) => {
             res.render('login',
             {
                 nav,
@@ -27,15 +26,11 @@ let router = (nav) => {
                 hide: '',
                 title: 'Library',
                 valid: '',
-                info,
-                users
+                info
             });
-        })
-
     });
 
     loginRouter.post('/user', (req, res) => {
-        const id = req.params.id
         let logindata = {
             email: req.body.email,
             password: req.body.password
@@ -79,7 +74,7 @@ let router = (nav) => {
                                 link: '/admin', name: 'ADD BOOKS', hide: 'hidden',
                             },
                             {
-                                link: '/admin/author', name: 'ADD AUTHOR', hide: 'hidden', jtoken: "token"
+                                link: '/admin/author', name: 'ADD AUTHOR', hide: 'hidden',
                             },
                             {
                                 link: '/login', name: 'LOGIN',
@@ -97,8 +92,6 @@ let router = (nav) => {
                                 id: loginuser[0]._id,
                             },
                         );
-                        console.log(result)
-                        console.log(token)
                         return res.status(200);
                     }
                     res.render('login',
