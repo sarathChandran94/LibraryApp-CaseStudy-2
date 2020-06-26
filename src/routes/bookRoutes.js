@@ -41,11 +41,11 @@ let router = (nav) => {
             res.render('books',
                 {
                     nav,
+                    token: "",
                     active: 'active',
                     title: 'Library',
                     newbooks
                 });
-            console.log(newbooks)
         });
     });
 
@@ -56,10 +56,11 @@ let router = (nav) => {
             res.render('book',
             {
                 nav,
+                token: "",
                 title: 'Library',
                 newbook
             });
-            console.log(newbook)
+
         });
     });
     booksRouter.get('/edit/:id', (req, res) => {
@@ -86,6 +87,7 @@ let router = (nav) => {
                 res.render('editBook', {
                     title: 'Library',
                     nav,
+                    token: "",
                     info,
                     editinfo
                 });

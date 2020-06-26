@@ -48,7 +48,7 @@
         <!-- main content starts here -->
         <div class="container" id="contentBody">
             <div class="container card" id="myCard">
-                <form method="POST" action="/authors/edited/<%=editinfo[4].info%>" class="needs-validation" onsubmit="return myVal()" novalidate>
+                <form method="POST" action="/authors/edited/<%=editinfo[4].info%>" enctype="multipart/form-data" class="needs-validation" onsubmit="return myVal()" novalidate>
                     <div class="row justify-content-center">
                         <fieldset class="col-sm-6 border border-success rounded" style="width: fit-content;">
                             <legend class="text-center">EDIT BOOK</legend>

@@ -9,7 +9,8 @@ const UserSchema = new Schema({
     phone: Number,
     email: String,
     dob: String,
-    password: String
+    password: String,
+    accountType: String
 });
 
 // Model Creation

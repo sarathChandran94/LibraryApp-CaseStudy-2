@@ -2,22 +2,22 @@ const express = require('express');
 const app = new express();
 const nav = [
     {
-        link: '/books', name: 'BOOKS'
+        link: '/books', name: 'BOOKS', 
     },
     {
-        link: '/authors', name: 'AUTHORS'
+        link: '/authors', name: 'AUTHORS', 
     },
     {
-        link: '/admin', name: 'ADD BOOKS', hide: 'hidden'
+        link: '/admin', name: 'ADD BOOKS', hide: 'hidden', 
     },
     {
-        link: '/admin/author', name: 'ADD AUTHOR', hide: 'hidden'
+        link: '/admin/author', name: 'ADD AUTHOR', hide: 'hidden', 
     },
     {
-        link: '/login', name: 'LOGIN'
+        link: '/login', name: 'LOGIN', 
     },
     {
-        link: '/signup', name: 'SIGNUP'
+        link: '/signup', name: 'SIGNUP',
     }
 ];
 
@@ -43,7 +43,10 @@ app.get('/',(req,res) => {
     res.render('index',
     {
         title:'myLibraryApp',
-        nav
+        nav,
+        token: '',
+        user: ''
+
     });
 });
 

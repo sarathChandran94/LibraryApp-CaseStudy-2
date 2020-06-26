@@ -42,6 +42,7 @@ let router = (nav) => {
             res.render('authors',
         {
             nav,
+            token: "",
             title:'Library',
             newauthors
         });
@@ -57,6 +58,7 @@ let router = (nav) => {
             res.render('author',
             {
                 nav,
+                token: "",
                 title: 'Library',
                 newauthor
             });
@@ -89,6 +91,7 @@ let router = (nav) => {
                 res.render('editAuthor', {
                     title: 'Library',
                     nav,
+                    token: '',
                     info,
                     editinfo
                 });

@@ -1,6 +1,7 @@
 const express = require('express');
 const loginRouter = express.Router();
 const userdata = require('../model/signupdata');
+const bcrypt = require('bcrypt');
 
 let router = (nav) => {
 
@@ -18,54 +19,102 @@ let router = (nav) => {
     ]
 
     loginRouter.get('/', (req, res) => {
-        res.render('login',
+        userdata.find().then((users) => {
+            res.render('login',
             {
                 nav,
+                token: "",
                 hide: '',
                 title: 'Library',
                 valid: '',
-                info
+                info,
+                users
             });
+        })
+
     });
 
     loginRouter.post('/user', (req, res) => {
+        const id = req.params.id
         let logindata = {
             email: req.body.email,
             password: req.body.password
         };
-        userdata.findOne({ email: logindata.email })
+        userdata.find({ email: logindata.email })
             .then((loginuser) => {
-                // console.log(`loginuser: ${loginuser}`);
-                // console.log(`logindata: {${logindata.email},${logindata.password}}`);
-                // res.send('login success');
-                if (loginuser == null) {
+                if (loginuser.length < 1) {
                     res.render('login',
-                    {
-                        nav,
-                        title: 'Library',
-                        valid: 'is-invalid',
-                        info
-                    });
-                }
-                else if (loginuser.email != logindata.email || loginuser.password != logindata.password){
-                    res.render('login',{
-                        nav,
-                        title: 'Library',
-                        valid: 'is-invalid',
-                        info
-                    });
-                }
-                else {
-                    res.render('index',
                         {
-                            title: 'Library',
                             nav,
+                            token: "",
+                            title: 'Library',
+                            valid: 'is-invalid',
+                            info
                         });
+                    return res.status(401);
                 }
-            }).catch((e) => {
-                res.send(e);
-            })
+                bcrypt.compare(logindata.password, loginuser[0].password, (err, result) => {
+                    if (err) {
+                        res.render('login',
+                            {
+                                nav,
+                                token: "",
+                                title: 'Library',
+                                valid: 'is-invalid',
+                                info
+                            });
+                        return res.status(401);
+                    }
+                    if (result) {
+
+
+                        const mynav = [
+                            {
+                                link: '/books', name: 'BOOKS',
+                            },
+                            {
+                                link: '/authors', name: 'AUTHORS',
+                            },
+                            {
+                                link: '/admin', name: 'ADD BOOKS', hide: 'hidden',
+                            },
+                            {
+                                link: '/admin/author', name: 'ADD AUTHOR', hide: 'hidden', jtoken: "token"
+                            },
+                            {
+                                link: '/login', name: 'LOGIN',
+                            },
+                            {
+                                link: '/signup', name: 'SIGNUP',
+                            }
+                        ];
+                        res.render('index',
+                            {
+                                title: 'Library',
+                                token: loginuser[0].accountType,
+                                mynav,
+                                user: loginuser[0].username,
+                                id: loginuser[0]._id,
+                            },
+                        );
+                        console.log(result)
+                        console.log(token)
+                        return res.status(200);
+                    }
+                    res.render('login',
+                        {
+                            nav,
+                            token: "",
+                            title: 'Library',
+                            valid: 'is-invalid',
+                            info
+                        });
+                });
+            });
     })
+
+
+
 
     return loginRouter;
 };

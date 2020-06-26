@@ -22,18 +22,47 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <%for(i=0;i<nav.length;i++) {%>
-                        <%if(i===4) {break;}%>
-                        <a class="nav-item nav-link" href="<%=nav[i].link%>"><%=nav[i].name%></a>
-                    <%}%>
-                </div>
-                </div>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                    <div class="navbar-nav ">
-                        <%for(i=0;i<nav.length;i++) {%>
-                            <%if(i<4) {continue;}%>
-                            <a class="nav-item nav-link" href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                    <%if(token == "Admin") {%>
+                        <%for(i=0;i<mynav.length;i++) {%>
+                            <% if(i===4) {break;} %>
+                            <% if(token == "Admin") { %>
+                            <a class="nav-item nav-link" href="<%=mynav[i].link%>"><%=mynav[i].name%></a>
+                            <% } else { %>
+                            <a class="nav-item nav-link " <%=mynav[i].hide%> href="<%=mynav[i].link%>"><%=mynav[i].name%></a>
+                            <% } %>
                         <%}%>
+                </div>
+                    <%if(token == "Admin") {%>
+                    <div class="navbar-nav"><a class="nav-item nav-link"><%=user%></a></div>
+                    </div>
+                    <%}%>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ">
+                            <%for(i=0;i<mynav.length;i++) {%>
+                                <%if(i<4) {continue;}%>
+                                <a class="nav-item nav-link" href="<%=mynav[i].link%>"><%=mynav[i].name%></a>
+                            <%}%>
+                        <%} else {%>
+                        <%for(i=0;i<nav.length;i++) {%>
+                            <% if(i===4) {break;} %>
+                            <% if(token == "Admin") { %>
+                            <a class="nav-item nav-link" href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                            <% } else { %>
+                            <a class="nav-item nav-link " <%=nav[i].hide%> href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                            <% } %>
+                        <%}%>
+                    </div>
+                    <%if(token == "Admin") {%>
+                    <div class="navbar-nav"><a class="nav-item nav-link"><%=user%></a></div>
+                    </div>
+                    <%}%>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ">
+                            <%for(i=0;i<nav.length;i++) {%>
+                                <%if(i<4) {continue;}%>
+                                <a class="nav-item nav-link" href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                            <%}%>
+                            <%}%>
                     </div>
                 </div>
             </nav>

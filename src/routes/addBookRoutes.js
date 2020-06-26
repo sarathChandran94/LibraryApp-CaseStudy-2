@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 const Bookdata = require('../model/bookdata')
-const Authordata = require('../model/authordata')
+const Authordata = require('../model/authordata');
 
 let router = (nav) => {
 
@@ -88,7 +88,6 @@ let router = (nav) => {
         let book = Bookdata(Obj);
         book.save();
         res.redirect('/books');
-        console.log(req.file);
     });
 
     addBookRouter.post('/addauth',upload.single('image'), (req, res) => {

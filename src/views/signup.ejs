@@ -21,11 +21,18 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <%for(i=0;i<nav.length;i++) {%>
-                        <%if(i===4) {break;}%>
+                        <% if(i===4) {break;} %>
+                        <% if(token == "Admin") { %>
                         <a class="nav-item nav-link" href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                        <% } else { %>
+                        <a class="nav-item nav-link " <%=nav[i].hide%> href="<%=nav[i].link%>"><%=nav[i].name%></a>
+                        <% } %>
                     <%}%>
                 </div>
+                <%if(token == "Admin") {%>
+                <div class="navbar-nav"><a class="nav-item nav-link"><%=user%></a></div>
                 </div>
+                <%}%>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav ">
                         <%for(i=0;i<nav.length;i++) {%>
@@ -52,6 +59,7 @@
                     <div class="row justify-content-center">
                         <fieldset class="col-sm-6 border border-success rounded" style="width: fit-content;">
                             <legend class="text-center">SIGNUP:</legend>
+
                             <!-- Username -->
                             <div class="form-group row">
                                 <label for="signupUname" class="col-md-4 col-form-label">Username</label>
@@ -62,16 +70,18 @@
                                     <div class="valid-feedback">Looks Good!</div>
                                 </div>
                             </div>
+
                             <!-- Phone number -->
                             <div class="form-group row">
                                 <label for="signupPh" class="col-md-4 col-form-label">Phone Number</label>
                                 <div class="col-md-8">
-                                    <input name="phone" type="tel" class="form-control" id="signupPh" autocomplete="tel" pattern="[0-9]{3}[\s|\-|\.]?[0-9]{3}[\s|\-|\.]?[0-9]{4}" required>
+                                    <input name="phone" type="tel" class="form-control" id="signupPh" pattern="[0-9]{3}[\s|\-|\.]?[0-9]{3}[\s|\-|\.]?[0-9]{4}" required>
                                     <div class="empty-feedback" style="display: none;"></div>
                                     <div class="invalid-feedback">Invalid Phone number</div>
                                     <div class="valid-feedback">Looks Good!</div>
                                 </div>
                             </div>
+
                             <!-- Email -->
                             <div class="form-group row">
                                 <label for="signupEmail" class="col-md-4 col-form-label">Email</label>
@@ -82,6 +92,7 @@
                                     <div class="valid-feedback">Looks Good!</div>
                                 </div>
                             </div>
+
                             <!-- Date of birth -->
                             <div class="form-group row">
                                 <label for="signupDob" class="col-md-4 col-form-label">Date Of Birth</label>
@@ -92,11 +103,12 @@
                                     <div class="valid-feedback">Looks Good!</div>
                                 </div>
                             </div>
+
                             <!-- Password -->
                             <div class="form-group row">
                                 <label for="signupPw" class="col-md-4 col-form-label">Password</label>
                                 <div class="col-md-8">
-                                    <input name="password" type="password" class="form-control" id="signupPw" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}" required>
+                                    <input name="password" type="password" class="form-control" id="signupPw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}" required>
                                     <div class="empty-feedback" style="display: none;"></div>
                                     <div class="invalid-feedback">Invalid Password</div>
                                     <div class="valid-feedback">OK!</div>
@@ -112,16 +124,33 @@
                                     </small>
                                 </div>
                             </div>
+
                             <!-- Password rematch -->
                             <div class="form-group row">
                                 <label for="signupPw2" class="col-md-4 col-form-label">Confirm Password</label>
                                 <div class="col-md-8">
-                                    <input type="password" class="form-control" id="signupPw2" autocomplete="current-password" pattern="" required>
+                                    <input type="password" class="form-control" id="signupPw2" pattern="" required>
                                     <div class="empty-feedback" style="display: none;"></div>
                                     <div class="invalid-feedback">Invalid Password</div>
                                     <div class="valid-feedback">OK!</div>
                                 </div>
                             </div>
+
+                            <!-- Account type -->
+                            <div class="form-group row">
+                                <label for="signupAcc" class="col-md-4 col-form-label">Account type</label>
+                                <div class="col-md-8">
+                                    <select name="accountType" id="signupAcc" class="form-control" required>
+                                        <option selected disabled value>...</option>
+                                        <option>Admin</option>
+                                        <option>Student</option>
+                                    </select>
+                                    <div class="empty-feedback" style="display: none;"></div>
+                                    <div class="invalid-feedback">Invalid</div>
+                                    <div class="valid-feedback">Looks Good!</div>
+                                </div>
+                            </div>
+
                             <!-- Button -->
                             <div class="form-group row">
                                 <div class="col-md-12">
